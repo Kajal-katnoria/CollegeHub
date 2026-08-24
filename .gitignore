@@ -28,3 +28,7 @@ Thumbs.db
 
 # Docker
 *.pid
+
+# Build/cache
+dist/
+coverage/
