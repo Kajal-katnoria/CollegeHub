@@ -1,35 +1,26 @@
 const { createClient } = require("redis");
 
 const redisClient = createClient({
-    url: process.env.REDIS_URL
+  url: process.env.REDIS_URL,
 });
 
-redisClient.on("error", (error) => {
-    console.error("Redis Error:", error.message);
+redisClient.on("error", (err) => {
+  console.error("REDIS ERROR:", err.message);
 });
 
 const connectRedis = async () => {
-    try {
-        if (!process.env.REDIS_URL) {
-            console.error("REDIS_URL is missing in .env");
-            return;
-        }
+  try {
+    console.log("REDIS_URL EXISTS:", !!process.env.REDIS_URL);
 
-        if (!redisClient.isOpen) {
-            await redisClient.connect();
-        }
+    await redisClient.connect();
 
-        // Avoid printing "Redis connected" multiple times
-        if (redisClient.isReady) {
-            console.log("Redis connected");
-        }
-
-    } catch (error) {
-        console.error("Redis connection failed:", error.message);
-    }
+    console.log("REDIS CONNECTED");
+  } catch (error) {
+    console.error("REDIS CONNECTION ERROR:", error.message);
+  }
 };
 
 module.exports = {
-    redisClient,
-    connectRedis
+  redisClient,
+  connectRedis,
 };
