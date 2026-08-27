@@ -6,51 +6,71 @@ const auth = require("../middleware/auth");
 const upload = require("../middleware/upload");
 
 const {
-  createItem,
-  getItems,
-  getItem,
-  updateItem,
-  deleteItem
+    createItem,
+    getItems,
+    getItem,
+    updateItem,
+    deleteItem
 } = require("../controllers/marketplaceController");
 
-
+// ===============================
 // CREATE
+// ===============================
+
 router.post(
-  "/",
-  auth,
-  upload.single("image"),
-  createItem
+    "/",
+    auth,
+    upload.single("image"),
+    createItem
 );
 
-
+// ===============================
 // GET ALL
+// ===============================
+
 router.get(
-  "/",
-  getItems
+    "/",
+    getItems
 );
 
+// ===============================
+// TEST
+// ===============================
 
+router.get("/test", (req, res) => {
+    res.json({
+        success: true,
+        message: "Marketplace route is working"
+    });
+});
+
+// ===============================
 // GET ONE
+// ===============================
+
 router.get(
-  "/:id",
-  getItem
+    "/:id",
+    getItem
 );
 
-
+// ===============================
 // UPDATE
+// ===============================
+
 router.put(
-  "/:id",
-  auth,
-  updateItem
+    "/:id",
+    auth,
+    updateItem
 );
 
-
+// ===============================
 // DELETE
-router.delete(
-  "/:id",
-  auth,
-  deleteItem
-);
+// ===============================
 
+router.delete(
+    "/:id",
+    auth,
+    deleteItem
+);
 
 module.exports = router;
