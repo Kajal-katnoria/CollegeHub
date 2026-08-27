@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 export default function ClubsPage() {
-  const API_URL = "http://localhost:5000/api/clubs";
+  const API_URL ="https://collegehub-backend-kesi.onrender.com/api/clubs";
 
   const [clubs, setClubs] = useState([]);
   const [showForm, setShowForm] = useState(false);

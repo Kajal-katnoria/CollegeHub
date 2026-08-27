@@ -21,7 +21,7 @@ export default function RegisterPage() {
 
     try {
       const res = await fetch(
-        "http://localhost:5000/api/auth/signup",
+        "https://collegehub-backend-kesi.onrender.com/api/auth/signup",
         {
           method: "POST",
           headers: {

@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 
 export default function ProfilePage() {
-  const API_URL = "http://localhost:5000/api/profile";
+  const API_URL = "https://collegehub-backend-kesi.onrender.com/api/profile";
 
   const [profile, setProfile] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -65,7 +65,7 @@ export default function ProfilePage() {
           setPreviewImage(
             data.profilePicture.startsWith("http")
               ? data.profilePicture
-              : `http://localhost:5000${data.profilePicture}`
+              : `https://collegehub-backend-kesi.onrender.com${data.profilePicture}`
           );
         }
       } catch (error) {
@@ -156,7 +156,7 @@ export default function ProfilePage() {
       if (newProfilePicture) {
         const fullImageUrl = newProfilePicture.startsWith("http")
           ? newProfilePicture
-          : `http://localhost:5000${newProfilePicture}`;
+          : `https://collegehub-backend-kesi.onrender.com//${newProfilePicture}`;
 
         setPreviewImage(fullImageUrl);
 

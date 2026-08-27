@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/notifications";
+const API_URL = "https://collegehub-backend-kesi.onrender.com/api/notifications";
 
 export async function getNotifications(token) {
     const response = await fetch(API_URL, {

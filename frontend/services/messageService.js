@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/chat";
+const API_URL = "https://collegehub-backend-kesi.onrender.com/api/chat";
 
 // GET GROUP MESSAGES
 export async function getGroupMessages(groupId, token) {

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 export default function LostFoundPage() {
 
-  const API_URL = "http://localhost:5000/api/lost-found";
+  const API_URL = "https://collegehub-backend-kesi.onrender.com/api/lost-found";
 
   const [items, setItems] = useState([]);
 
@@ -47,7 +47,7 @@ useEffect(() => {
       const token = localStorage.getItem("token");
 
       const response = await fetch(
-        "http://localhost:5000/api/lost-found",
+        "https://collegehub-backend-kesi.onrender.com/api/lost-found",
         {
           headers: {
             Authorization: `Bearer ${token}`,

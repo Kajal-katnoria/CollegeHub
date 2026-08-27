@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/event";
+const API_URL = "https://collegehub-backend-kesi.onrender.com/api/event";
 
 export async function getEvents() {
   const res = await fetch(API_URL);

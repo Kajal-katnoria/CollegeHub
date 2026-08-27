@@ -17,7 +17,7 @@ export default function Product() {
         console.log("FETCHING PRODUCT ID:", id);
 
         const res = await fetch(
-          `http://localhost:5000/api/items/${id}`
+          "https://collegehub-backend-kesi.onrender.com/api/items/${id}"
         );
 
         console.log("PRODUCT RESPONSE STATUS:", res.status);

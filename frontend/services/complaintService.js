@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/api/complaints";
+const API_URL = "https://collegehub-backend-kesi.onrender.com/api/complaints";
 
 export const getComplaints = async () => {
   const response = await fetch(API_URL);
