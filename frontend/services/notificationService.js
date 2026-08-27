@@ -1,43 +1,43 @@
-const API_URL = "https://collegehub-backend-kesi.onrender.com/api/notifications";
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/api/notifications`;
 
 export async function getNotifications(token) {
-    const response = await fetch(API_URL, {
-        method: "GET",
-        headers: {
-            Authorization: `Bearer ${token}`,
-            "Content-Type": "application/json",
-        },
-    });
+  const response = await fetch(API_URL, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
 
-    if (!response.ok) {
-        const text = await response.text();
-        throw new Error(text || "Failed to fetch notifications");
-    }
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(text || "Failed to fetch notifications");
+  }
 
-    return response.json();
+  return response.json();
 }
 
 export async function markNotificationAsRead(
-    notificationId,
-    token
+  notificationId,
+  token
 ) {
-    const response = await fetch(
-        `${API_URL}/${notificationId}/read`,
-        {
-            method: "PUT",
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-            },
-        }
-    );
-
-    if (!response.ok) {
-        const text = await response.text();
-        throw new Error(
-            text || "Failed to mark notification as read"
-        );
+  const response = await fetch(
+    `${API_URL}/${notificationId}/read`,
+    {
+      method: "PUT",
+      headers: {
+        Authorization: `Bearer ${token}`,
+        "Content-Type": "application/json",
+      },
     }
+  );
 
-    return response.json();
+  if (!response.ok) {
+    const text = await response.text();
+    throw new Error(
+      text || "Failed to mark notification as read"
+    );
+  }
+
+  return response.json();
 }

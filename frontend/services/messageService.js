@@ -1,22 +1,18 @@
-const API_URL = "https://collegehub-backend-kesi.onrender.com/api/chat";
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/api/chat`;
 
-// GET GROUP MESSAGES
 export async function getGroupMessages(groupId, token) {
-    const response = await fetch(
-        `${API_URL}/${groupId}`,
-        {
-            method: "GET",
-            headers: {
-                Authorization: `Bearer ${token}`,
-                "Content-Type": "application/json",
-            },
-        }
-    );
+  const response = await fetch(`${API_URL}/${groupId}`, {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+  });
 
-    if (!response.ok) {
-        const errorText = await response.text();
-        throw new Error(errorText || "Failed to fetch messages");
-    }
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(errorText || "Failed to fetch messages");
+  }
 
-    return response.json();
+  return response.json();
 }

@@ -1,8 +1,4 @@
-const API_URL = "https://collegehub-backend-kesi.onrender.com/api/items";
-
-// ===============================
-// GET ALL ITEMS
-// ===============================
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/api/item`;
 
 export async function getItems() {
   const res = await fetch(API_URL);
@@ -14,10 +10,6 @@ export async function getItems() {
   return res.json();
 }
 
-// ===============================
-// GET SINGLE ITEM
-// ===============================
-
 export async function getItem(id) {
   const res = await fetch(`${API_URL}/${id}`);
 
@@ -28,18 +20,12 @@ export async function getItem(id) {
   return res.json();
 }
 
-// ===============================
-// CREATE ITEM
-// ===============================
-
 export async function createItem(formData, token) {
   const res = await fetch(API_URL, {
     method: "POST",
-
     headers: {
       Authorization: `Bearer ${token}`,
     },
-
     body: formData,
   });
 
@@ -54,19 +40,13 @@ export async function createItem(formData, token) {
   return data;
 }
 
-// ===============================
-// UPDATE ITEM
-// ===============================
-
 export async function updateItem(id, data, token) {
   const res = await fetch(`${API_URL}/${id}`, {
     method: "PUT",
-
     headers: {
       "Content-Type": "application/json",
       Authorization: `Bearer ${token}`,
     },
-
     body: JSON.stringify(data),
   });
 
@@ -81,14 +61,9 @@ export async function updateItem(id, data, token) {
   return responseData;
 }
 
-// ===============================
-// DELETE ITEM
-// ===============================
-
 export async function deleteItem(id, token) {
   const res = await fetch(`${API_URL}/${id}`, {
     method: "DELETE",
-
     headers: {
       Authorization: `Bearer ${token}`,
     },

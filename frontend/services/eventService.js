@@ -1,4 +1,4 @@
-const API_URL = "https://collegehub-backend-kesi.onrender.com/api/event";
+const API_URL = `${process.env.NEXT_PUBLIC_API_URL}/api/event`;
 
 export async function getEvents() {
   const res = await fetch(API_URL);
@@ -30,21 +30,20 @@ export async function createEvent(eventData, token) {
 
   return res.json();
 }
-export async function registerEvent(
-  id,
-  token
-) {
-  const res = await fetch(
-    `${API_URL}/register/${id}`,
-    {
-      method: "POST",
 
-      headers: {
-        Authorization:
-          `Bearer ${token}`
-      }
-    }
-  );
+export async function registerEvent(id, token) {
+  const res = await fetch(`${API_URL}/register/${id}`, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+    },
+  });
+
+  if (!res.ok) {
+    const text = await res.text();
+    console.error("REGISTER EVENT ERROR:", res.status, text);
+    throw new Error("Failed to register for event");
+  }
 
   return res.json();
 }
