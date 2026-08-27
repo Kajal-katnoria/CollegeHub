@@ -14,12 +14,20 @@ const app = express();
 const server = http.createServer(app);
 
 // ===============================
+// CORS
+// ===============================
+
+const allowedOrigins = [
+    "http://localhost:3000",
+];
+
+// ===============================
 // SOCKET.IO
 // ===============================
 
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "*",
         methods: ["GET", "POST"],
     },
 });
@@ -32,8 +40,7 @@ const prisma = new PrismaClient();
 
 app.use(
     cors({
-        origin: "http://localhost:3000",
-        credentials: true,
+        origin: "*",
     })
 );
 
@@ -84,12 +91,12 @@ app.use("/api/event", eventRoutes);
 app.use("/api/lost-found", lostFoundRoutes);
 
 // Marketplace
-// IMPORTANT: frontend uses /api/items
 app.use("/api/items", marketplaceRoutes);
+
 app.get("/api/items/test", (req, res) => {
     res.json({
         success: true,
-        message: "Marketplace route is working"
+        message: "Marketplace route is working",
     });
 });
 
@@ -152,7 +159,10 @@ io.on("connection", (socket) => {
             const senderId = Number(data.senderId);
             const content = data.content?.trim();
 
-            // Validate data
+            // ===========================
+            // VALIDATE DATA
+            // ===========================
+
             if (!groupId || !senderId || !content) {
                 socket.emit("message_error", {
                     message: "Invalid message data",
@@ -290,7 +300,7 @@ const PORT = process.env.PORT || 5000;
 
 server.listen(PORT, async () => {
     console.log(
-        `Server running on http://localhost:${PORT}`
+        `Server running on port ${PORT}`
     );
 
     try {
